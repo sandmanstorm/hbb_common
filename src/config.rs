@@ -114,8 +114,9 @@ lazy_static::lazy_static! {
     pub static ref NEW_STORED_PEER_CONFIG: Mutex<HashSet<String>> = Default::default();
     pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
         let mut m = HashMap::new();
-        m.insert("custom-rendezvous-server".to_string(), "remote.callmor.ai".to_string());
-        m.insert("relay-server".to_string(), "remote.callmor.ai:21117".to_string());
+        m.insert("custom-rendezvous-server".to_string(), "ferrydesk.com".to_string());
+        m.insert("relay-server".to_string(), "ferrydesk.com:21117".to_string());
+        m.insert("api-server".to_string(), "https://ferrydesk.com".to_string());
         m.insert("key".to_string(), "JsAAR1hKXo1+69S7g2szyE0hmdWe3WGgQ2KfjJCYWV4=".to_string());
         m
     });
@@ -124,11 +125,7 @@ lazy_static::lazy_static! {
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
-        let mut m = HashMap::new();
-        m.insert("disable-account".to_string(), "Y".to_string());
-        m
-    });
+    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::new());
     pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
         let mut m = HashMap::new();
         m.insert("hide-network-settings".to_string(), "Y".to_string());
@@ -170,7 +167,7 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["remote.callmor.ai"];
+pub const RENDEZVOUS_SERVERS: &[&str] = &["ferrydesk.com"];
 pub const RS_PUB_KEY: &str = "JsAAR1hKXo1+69S7g2szyE0hmdWe3WGgQ2KfjJCYWV4=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
