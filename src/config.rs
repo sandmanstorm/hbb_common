@@ -112,14 +112,28 @@ lazy_static::lazy_static! {
     static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
     static ref USER_DEFAULT_CONFIG: RwLock<(UserDefaultConfig, Instant)> = RwLock::new((UserDefaultConfig::load(), Instant::now()));
     pub static ref NEW_STORED_PEER_CONFIG: Mutex<HashSet<String>> = Default::default();
-    pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
+        let mut m = HashMap::new();
+        m.insert("custom-rendezvous-server".to_string(), "remote.callmor.ai".to_string());
+        m.insert("relay-server".to_string(), "remote.callmor.ai:21117".to_string());
+        m.insert("key".to_string(), "JsAAR1hKXo1+69S7g2szyE0hmdWe3WGgQ2KfjJCYWV4=".to_string());
+        m
+    });
     pub static ref OVERWRITE_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
+        let mut m = HashMap::new();
+        m.insert("disable-account".to_string(), "Y".to_string());
+        m
+    });
+    pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
+        let mut m = HashMap::new();
+        m.insert("hide-network-settings".to_string(), "Y".to_string());
+        m
+    });
 }
 
 #[cfg(target_os = "android")]
